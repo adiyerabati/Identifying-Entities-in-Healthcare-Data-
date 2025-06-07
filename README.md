@@ -1,83 +1,64 @@
 # Identifying-Entities-in-Healthcare-Data-
 ‘BeHealthy’ has a web platform that allows doctors to list their services and manage patient interactions and provides services for patients such as booking interactions with doctors and ordering medicines online. Here, doctors can easily organise appointments, track past medical records and provide e-prescriptions.
 
-BeHealthy Medical Named Entity Recognition (NER)
-Overview
-BeHealthy is a hypothetical health tech platform connecting doctors and patients nationwide. The platform generates a large volume of medical text data daily, such as clinical notes and therapy reviews, containing complex medical terminology like diseases and treatments.
+# BeHealthy Medical Named Entity Recognition (NER)
 
-This project aims to build a custom Named Entity Recognition (NER) model to automatically extract disease names and their corresponding treatments from unstructured medical text. Since these entities are not explicitly labeled in the text, the model learns to identify and classify them from the dataset.
+---
 
-Dataset
-The project uses four datasets:
+## 🚀 Project Overview
 
-train_sent: Training sentences with one word per line. Blank lines separate sentences.
+**BeHealthy** is a conceptual health tech platform designed to connect doctors and patients across the country. It generates large volumes of medical text data daily, including clinical notes and therapy reviews containing complex medical terminology such as diseases and treatments.
 
-train_label: Corresponding labels for each word in train_sent with tags:
+This project focuses on building a **custom Named Entity Recognition (NER)** model to automatically extract **disease names** and their corresponding **treatments** from unstructured medical text. Since these entities are not explicitly labeled, the model learns to identify and classify them from the dataset.
 
-D = Disease
+---
 
-T = Treatment
+## 📂 Dataset Description
 
-O = Other (non-entity)
+You will work with four datasets:
 
-test_sent: Test sentences in the same format as train_sent.
+| Dataset      | Description                                                   |
+|--------------|---------------------------------------------------------------|
+| `train_sent` | Training sentences with one word per line; blank lines separate sentences. |
+| `train_label`| Labels for each word in `train_sent` (`D`=Disease, `T`=Treatment, `O`=Other). |
+| `test_sent`  | Test sentences in the same format as `train_sent`.            |
+| `test_label` | Labels corresponding to `test_sent`.                           |
 
-test_label: Labels corresponding to test_sent.
+**Note:** Sentences need to be reconstructed by grouping words between blank lines.
 
-Note: Sentences must be reconstructed by grouping words between blank lines.
+---
 
-Project Workflow
-The following steps outline the complete pipeline:
+## 🛠️ Project Workflow
 
-Data Preprocessing
+1. **Data Preprocessing**  
+   Convert word-level data and labels into sentence-level structures for both training and testing sets.
 
-Convert word-level data and labels into sentence-level format for both training and testing.
+2. **Concept Identification**  
+   Understand the dataset’s entity labels and their meanings (`Disease`, `Treatment`, `Other`).
 
-Concept Identification
+3. **Feature Engineering**  
+   Define and extract features for each word to use in the Conditional Random Field (CRF) model.
 
-Understand the labels and entity types (Disease, Treatment, Other) used in the dataset.
+4. **Feature Extraction**  
+   Extract features for all words in every sentence (train and test).
 
-Feature Engineering
+5. **Input & Target Preparation**  
+   Prepare input feature vectors and target labels to train the model.
 
-Define features for each word to train the Conditional Random Field (CRF) model.
+6. **Model Building**  
+   Train a CRF model to recognize disease and treatment entities in text.
 
-Feature Extraction
+7. **Model Evaluation**  
+   Evaluate model performance using the test dataset.
 
-Extract the features for all words in each sentence for training and testing.
+8. **Entity Extraction & Mapping**  
+   Use the trained model to extract diseases and treatments, organizing them into a dictionary where diseases are keys and treatments are values.
 
-Input and Target Preparation
+---
 
-Prepare feature vectors and target labels for model training.
+## ⚙️ How to Use
 
-Model Training
-
-Build and train a CRF model for disease and treatment entity recognition.
-
-Model Evaluation
-
-Evaluate the model on the test set and measure its performance.
-
-Entity Extraction and Mapping
-
-Use the trained model to identify diseases and their predicted treatments in the text, and organize these as a dictionary where diseases are keys and treatments are values.
-
-How to Use
-Clone the repository.
-
-Download the datasets (train_sent, train_label, test_sent, test_label) and place them in the data/ directory.
-
-Run the preprocessing script to convert word-level data into sentence-level lists.
-
-Extract features and train the CRF model.
-
-Evaluate the model and extract disease-treatment pairs.
-
-Technologies Used
-Python 3.x
-
-sklearn-crfsuite (CRF implementation)
-
-pandas, numpy (data processing)
-
-License
-This project is for educational purposes only.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/BeHealthy-NER.git
+   cd BeHealthy-NER
